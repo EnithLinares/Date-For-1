@@ -136,7 +136,7 @@ The design process will include:
 -   Developing a consistent design system (color palette, typography, reusable components)
 -   Designing responsive layouts for both mobile, tablet and desktop views
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/QP53muwNQXRfvMPhkQvC7q/Date-for-1?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+Check out the wireframes and mockups [here](https://www.figma.com/design/QP53muwNQXRfvMPhkQvC7q/Date-for-1?node-id=0-1&t=Vto5dVwaEaU2yPUl-1)
 
 ### Data
 
