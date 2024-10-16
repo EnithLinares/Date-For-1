@@ -148,22 +148,26 @@ Activities
 -   Image URL
 -   Venue ID (foreign key to Venues table)
 -   Price Range ID (foreign key to Price Ranges table)
-    Venues
+
+Venues
 -   ID (unique identifier)
 -   Name - Address - Website URL
     Moods
 -   ID (unique identifier)
 -   Name (e.g., creative, hungry, adventurous, curious)
-    Times of Day
+
+Times of Day
 -   ID (unique identifier)
 -   Name (e.g., morning, afternoon, evening, night)
     Price Ranges
 -   ID (unique identifier)
 -   Range (e.g., $, $$, $$$, $$$$)
-    Activity_Moods (junction table)
+
+Activity_Moods (junction table)
 -   Activity ID (foreign key to Activities table)
 -   Mood ID (foreign key to Moods table)
-    Activity_Times (junction table)
+
+Activity_Times (junction table)
 -   Activity ID (foreign key to Activities table)
 -   Time of Day ID (foreign key to Times of Day table)
 
