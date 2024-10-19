@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url("../../src/assets/fonts/Quicksand-Light.ttf") format(ttf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("../../src/assets/fonts/Quicksand-Regular.ttf") format(ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("../../src/assets/fonts/Quicksand-Medium.ttf") format(ttf);
+    font-weight: 500;
+}
+
+// Page headers
+
+$header-size: 1.5rem;
+$header-size-tablet: 1.875rem;
+
+@mixin header {
+    font-size: $header-size;
+    font-weight: 500;
+}
+
+@mixin header-tablet {
+    font-size: $header-size-tablet;
+    font-weight: 500;
+}
+
+// Sub-headers
+
+$subheader-size: 1.25rem;
+$subheader-size-tablet: 1.625rem;
+
+@mixin subheader {
+    font-size: $subheader-size;
+    font-weight: 500;
+}
+
+@mixin subheader-tablet {
+    font-size: $subheader-size-tablet;
+    font-weight: 500;
+}
+
+// Buttons
