@@ -1,33 +1,36 @@
 @font-face {
     font-family: "Quicksand";
-    src: url("../../src/assets/fonts/Quicksand-Light.ttf") format(ttf);
+    src: url("../../src/assets/fonts/Quicksand-Light.ttf") format(truetype);
     font-weight: 300;
 }
 
 @font-face {
     font-family: "Quicksand";
-    src: url("../../src/assets/fonts/Quicksand-Regular.ttf") format(ttf);
+    src: url("../../src/assets/fonts/Quicksand-Regular.ttf") format(truetype);
     font-weight: 400;
 }
 
 @font-face {
     font-family: "Quicksand";
-    src: url("../../src/assets/fonts/Quicksand-Medium.ttf") format(ttf);
+    src: url("../../src/assets/fonts/Quicksand-Medium.ttf") format(truetype);
     font-weight: 500;
 }
 
 // Page headers
 
 $header-size: 1.5rem;
+$header-height: 1.65rem;
 $header-size-tablet: 1.875rem;
 
 @mixin header {
     font-size: $header-size;
+    line-height: $header-height;
     font-weight: 500;
 }
 
 @mixin header-tablet {
     font-size: $header-size-tablet;
+    line-height: 2.25rem;
     font-weight: 500;
 }
 
@@ -35,15 +38,87 @@ $header-size-tablet: 1.875rem;
 
 $subheader-size: 1.25rem;
 $subheader-size-tablet: 1.625rem;
+$subheader-height: 1.5rem;
 
 @mixin subheader {
     font-size: $subheader-size;
+    line-height: $subheader-height;
     font-weight: 500;
 }
 
 @mixin subheader-tablet {
     font-size: $subheader-size-tablet;
+    line-height: 2rem;
     font-weight: 500;
 }
 
+// Body
+
+$body-size: 1rem;
+$body-height: 1.5rem;
+$body-size-tablet: 1.25rem;
+
+@mixin body {
+    font-size: $body-size;
+    line-height: $body-height;
+    font-weight: 300;
+}
+
+@mixin body-tablet {
+    font-size: $body-size-tablet;
+    line-height: 1.875rem;
+    font-weight: 300;
+}
+
 // Buttons
+
+$button-size: 1.125rem;
+$button-height: 1.5rem;
+$button-size-tablet: 1.3rem;
+
+@mixin button {
+    font-size: $button-size;
+    line-height: $button-height;
+    font-weight: 400;
+}
+
+@mixin button-tablet {
+    font-size: $button-size-tablet;
+    line-height: 1.95rem;
+    font-weight: 400;
+}
+
+// Labels
+
+$label-size: 0.875rem;
+$label-height: 1.4rem;
+$label-size-tablet: 1rem;
+
+@mixin label {
+    font-size: $label-size;
+    line-height: $label-height;
+    font-weight: 400;
+}
+
+@mixin label-tablet {
+    font-size: $label-size-tablet;
+    line-height: 1.5rem;
+    font-weight: 400;
+}
+
+// Placeholder text
+$placeholder-size: 1rem;
+$placeholder-height: 1.5rem;
+$placeholder-size-tablet: 1.25rem;
+
+@mixin placeholder {
+    font-size: $placeholder-size;
+    line-height: $placeholder-height;
+    font-weight: 300;
+}
+
+@mixin placeholder-tablet {
+    font-size: $placeholder-size-tablet;
+    line-height: 1.875rem;
+    font-weight: 300;
+}
