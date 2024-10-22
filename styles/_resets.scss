@@ -53,9 +53,8 @@ textarea {
 
 a {
     text-decoration: none;
-    color: $white;
+}
 
-    &:visited {
-        color: $white;
-    }
+body {
+    font-family: "Quicksand", sans-serif;
 }
