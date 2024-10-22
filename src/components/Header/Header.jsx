@@ -1,19 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo/date-for-1.svg";
+import logo from "../../assets/logo/date-for-1-logo.svg";
+import "../Header/Header.scss";
 
 export default function Header() {
     return (
         <nav className="nav">
             <img src={logo} alt="date for 1 logo" className="nav__logo" />
             <div className="nav__buttons">
-                <button className="options">
-                    <Link to="/quiz">Take the Quiz</Link>
-                </button>
+                <Link to="/quiz" className="link">
+                    <button className="nav__buttons--options">
+                        Date Ideas
+                    </button>
+                </Link>
 
-                <button className="options">
-                    <Link to="/activities">Browse Activities</Link>
-                </button>
+                <Link to="/activities" className="link">
+                    <button className="nav__buttons--options">Quiz</button>
+                </Link>
             </div>
         </nav>
     );

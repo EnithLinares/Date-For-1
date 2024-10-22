@@ -1,0 +1,44 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.nav {
+    background-color: $text;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    &__logo {
+        height: 12vh;
+    }
+
+    &__buttons {
+        display: flex;
+        width: 90%;
+        gap: 10px;
+
+        .link {
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
+
+        &--options {
+            @include button;
+            background-color: $button;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+
+            &:hover {
+                background-color: $background;
+                color: $white;
+            }
+        }
+    }
+}
