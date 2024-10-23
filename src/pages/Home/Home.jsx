@@ -5,22 +5,36 @@ import Header from "../../components/Header/Header";
 
 export default function Home() {
     return (
-        <div>
-            <Header />
-            <h1>Welcome to Date for 1</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/add-activity">Add an Activity</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact">Contact Us</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <>
+            <div>
+                <Header />
+                <div className="hero">
+                    <h1 className="hero__title">
+                        Celebrating the art of taking yourself out on a date
+                    </h1>
+                    <p className="hero__body">
+                        Explore your city, try something new and enjoy some much
+                        needed 'Me Time"
+                    </p>
+                    <input
+                        className="hero__search"
+                        placeholder="Find you perfect Date For 1"
+                    ></input>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/add-activity">Add an Activity</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">About Us</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">Contact Us</Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </>
     );
 }
