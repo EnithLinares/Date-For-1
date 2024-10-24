@@ -14,6 +14,7 @@ function SearchBar() {
             });
 
             console.log("Response Data:", response.data);
+
             if (response.data.length === 0) {
                 setError("No results found");
             } else {
@@ -28,12 +29,19 @@ function SearchBar() {
         }
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
+
     return (
         <div>
             <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyPress={handleKeyPress} // Add key press handler
                 placeholder="Search activities, moods, venues..."
             />
             <button onClick={handleSearch}>Search</button>

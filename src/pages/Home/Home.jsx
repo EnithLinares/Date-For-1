@@ -3,6 +3,7 @@ import "../Home/Home.scss";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import TypingSuggestions from "../../components/TypingSuggestions/TypingSuggestions";
 
 export default function Home() {
     return (
@@ -18,6 +19,9 @@ export default function Home() {
                         needed 'Me Time"
                     </p>
                     <SearchBar />
+                </div>
+                <div>
+                    <TypingSuggestions />
                 </div>
                 <nav>
                     <ul>

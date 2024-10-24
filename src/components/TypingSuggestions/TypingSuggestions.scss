@@ -1,0 +1,25 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.typing {
+    @include subheader;
+    text-align: center;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    background-color: $light-background;
+    color: $light-text;
+    padding: 4rem 0.5rem;
+
+    &__text {
+        padding: 0.5rem 0;
+    }
+
+    &__animation {
+        padding: 0.5rem 0;
+        font-weight: bold;
+    }
+
+    @include green-link-buttons;
+}
