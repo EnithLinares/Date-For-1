@@ -2,6 +2,7 @@ import React from "react";
 import "../Home/Home.scss";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 export default function Home() {
     return (
@@ -16,10 +17,7 @@ export default function Home() {
                         Explore your city, try something new and enjoy some much
                         needed 'Me Time"
                     </p>
-                    <input
-                        className="hero__search"
-                        placeholder="Find you perfect Date For 1"
-                    ></input>
+                    <SearchBar />
                 </div>
                 <nav>
                     <ul>

@@ -2,6 +2,7 @@ import "./App.scss";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
+import SearchResults from "./pages/SearchResults/SearchResults.jsx";
 import Quiz from "./pages/Quiz/Quiz.jsx";
 import ActivitiesList from "./pages/ActivitiesList/ActivitiesList.jsx";
 import ActivityDetails from "./pages/ActivityDetails/ActivityDetails.jsx";
@@ -13,6 +14,7 @@ export default function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/search-results" element={<SearchResults />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/activities" element={<ActivitiesList />} />
                 <Route path="/activities/:id" element={<ActivityDetails />} />
