@@ -31,7 +31,7 @@ $header-size-tablet: 1.875rem;
 @mixin header-tablet {
     font-size: $header-size-tablet;
     line-height: 2.25rem;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 // Sub-headers

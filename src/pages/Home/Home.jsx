@@ -12,11 +12,12 @@ export default function Home() {
                 <Header />
                 <div className="hero">
                     <h1 className="hero__title">
-                        Celebrating the art of taking yourself out on a date
+                        Celebrating the art<br></br> of taking yourself out on
+                        <br></br>a date
                     </h1>
                     <p className="hero__body">
-                        Explore your city, try something new and enjoy some much
-                        needed 'Me Time"
+                        Explore your city, try something new <br></br>and enjoy
+                        some much needed <br></br>'Me Time"
                     </p>
                     <SearchBar />
                 </div>

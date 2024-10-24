@@ -27,7 +27,7 @@ function TypingSuggestions() {
 
                     <Link to="/activities" className="link">
                         <button className="typing__buttons--options">
-                            Take The Quiz
+                            Go To Quiz
                         </button>
                     </Link>
                 </div>
