@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ActivitiesList() {
     const [activities, setActivities] = useState([]);
@@ -136,10 +137,21 @@ function ActivitiesList() {
             </div>
             <div>
                 {activities.map((activity) => (
-                    <div key={activity.id}>
-                        <h3>{activity.name}</h3>
-                        {/* Add more activity details here */}
-                    </div>
+                    <Link
+                        to={`/activity/${activity.id}`}
+                        key={activity.id}
+                        className="activity-link"
+                    >
+                        <div className="activity-item">
+                            <h3>{activity.name}</h3>
+                            <p className="description-preview">
+                                {activity.description
+                                    ? activity.description.slice(0, 100) + "..."
+                                    : "No description available."}
+                            </p>
+                            {/* Add more activity details here if needed */}
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

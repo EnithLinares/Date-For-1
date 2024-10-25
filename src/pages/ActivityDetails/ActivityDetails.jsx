@@ -1,11 +1,33 @@
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function ActivityDetails() {
-    let { id } = useParams();
+function ActivityDetail() {
+    const [activity, setActivity] = useState(null);
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchActivity = async () => {
+            try {
+                const response = await axios.get(`/api/activities/${id}`);
+                setActivity(response.data);
+            } catch (error) {
+                console.error("Error fetching activity:", error);
+            }
+        };
+
+        fetchActivity();
+    }, [id]);
+
+    if (!activity) return <div>Loading...</div>;
+
     return (
         <div>
-            <h1>Activity Details</h1>
-            <p>Activity ID: {id}</p>
+            <h1>{activity.name}</h1>
+            <p>{activity.description}</p>
+            {/* Add more activity details here */}
         </div>
     );
 }
+
+export default ActivityDetail;
