@@ -24,19 +24,12 @@ export default function Home() {
                 <div>
                     <TypingSuggestions />
                 </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/add-activity">Add an Activity</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About Us</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">Contact Us</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <div className="about">
+                    <p>Learn about the app's creator</p>
+                    <Link to="/about" className="link">
+                        <button className="about__button">About Me</button>
+                    </Link>
+                </div>
             </div>
         </>
     );

@@ -6,7 +6,9 @@ import "../Header/Header.scss";
 export default function Header() {
     return (
         <nav className="nav">
-            <img src={logo} alt="date for 1 logo" className="nav__logo" />
+            <Link to={"/"} className="link">
+                <img src={logo} alt="date for 1 logo" className="nav__logo" />
+            </Link>
             <div className="nav__buttons">
                 <Link to="/quiz" className="link">
                     <button className="nav__buttons--options">

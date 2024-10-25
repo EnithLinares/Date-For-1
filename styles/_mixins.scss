@@ -33,3 +33,35 @@
         }
     }
 }
+
+@mixin search-button {
+    @include button;
+    background-color: $button;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 22%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: $light-background;
+        color: $light-text;
+    }
+}
+
+@mixin single-green-button {
+    @include button;
+    background-color: $button;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: $background;
+        color: $white;
+    }
+}

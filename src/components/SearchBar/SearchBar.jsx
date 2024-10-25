@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../SearchBar/SearchBar.scss";
 
 function SearchBar() {
     const [query, setQuery] = useState("");
@@ -36,15 +37,18 @@ function SearchBar() {
     };
 
     return (
-        <div>
+        <div className="search">
             <input
                 type="text"
+                className="search__bar"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                onKeyPress={handleKeyPress} // Add key press handler
-                placeholder="Search activities, moods, venues..."
+                onKeyDown={handleKeyPress}
+                placeholder="Search your date idea..."
             />
-            <button onClick={handleSearch}>Search</button>
+            <button onClick={handleSearch} className="search__button">
+                Search
+            </button>
             {error && <p>{error}</p>}
         </div>
     );
