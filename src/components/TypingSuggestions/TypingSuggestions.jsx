@@ -19,13 +19,13 @@ function TypingSuggestions() {
                 <p className="typing__text">or</p>
 
                 <div className="typing__buttons">
-                    <Link to="/quiz" className="link">
+                    <Link to="/activities" className="link">
                         <button className="typing__buttons--options">
                             Date Ideas
                         </button>
                     </Link>
 
-                    <Link to="/activities" className="link">
+                    <Link to="/quiz" className="link">
                         <button className="typing__buttons--options">
                             Go To Quiz
                         </button>

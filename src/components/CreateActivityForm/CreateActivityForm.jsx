@@ -6,7 +6,6 @@ function CreateActivityForm() {
         name: "",
         description: "",
         venue_name: "",
-        postal_code: "",
         time_of_day_id: "",
         mood_id: "",
         price_range_id: "",
@@ -50,56 +49,55 @@ function CreateActivityForm() {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file && !file.type.match("image.*")) {
-            setErrors({ image: "Please upload a valid image file" });
+            setErrors({ ...errors, image: "Please upload a valid image file" });
             return;
         }
         setImage(file);
         setErrors({ ...errors, image: null });
     };
 
-    const validatePostalCode = (postalCode) => {
-        const regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
-        return regex.test(postalCode);
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!validatePostalCode(formData.postal_code)) {
-            setErrors({ postal_code: "Invalid Canadian postal code" });
-            return;
-        }
-
-        if (!image) {
-            setErrors({ image: "Please upload an image" });
-            return;
-        }
 
         const data = new FormData();
         data.append("name", formData.name);
         data.append("description", formData.description);
         data.append("venue_name", formData.venue_name);
-        data.append("postal_code", formData.postal_code);
         data.append("time_of_day_id", formData.time_of_day_id);
         data.append("mood_id", formData.mood_id);
-        data.append("price_range_id", formData.price_range_id);
+        data.append("price_range_id", formData.price_range_id); // Ensure this is populated
         data.append("image", image);
 
         try {
-            const response = await axios.post("/api/activities", data, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+            const response = await axios.post(
+                "http://localhost:8080/api/activities",
+                data
+            );
             console.log("Activity created:", response.data);
-            // Reset form or redirect
+            // Reset form or show success message
+            setFormData({
+                name: "",
+                description: "",
+                venue_name: "",
+                time_of_day_id: "",
+                mood_id: "",
+                price_range_id: "",
+            });
+            setImage(null);
+            setErrors({});
         } catch (error) {
-            console.error("Error creating activity:", error);
-            setErrors({ submit: "Failed to create activity" });
+            console.error(
+                "Error creating activity:",
+                error.response?.data || error.message
+            );
+            setErrors({ ...errors, submit: "Failed to create activity" });
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <h2>Create Activity</h2>
+
             <input
                 type="text"
                 name="name"
@@ -108,7 +106,6 @@ function CreateActivityForm() {
                 onChange={handleChange}
                 required
             />
-            {errors.name && <p>{errors.name}</p>}
 
             <input
                 type="text"
@@ -118,17 +115,6 @@ function CreateActivityForm() {
                 onChange={handleChange}
                 required
             />
-            {errors.venue_name && <p>{errors.venue_name}</p>}
-
-            <input
-                type="text"
-                name="postal_code"
-                placeholder="Postal Code"
-                value={formData.postal_code}
-                onChange={handleChange}
-                required
-            />
-            {errors.postal_code && <p>{errors.postal_code}</p>}
 
             <textarea
                 name="description"
@@ -177,9 +163,11 @@ function CreateActivityForm() {
             </select>
 
             <input type="file" name="image" onChange={handleImageChange} />
+
             {errors.image && <p className="error">{errors.image}</p>}
 
             <button type="submit">Submit</button>
+
             {errors.submit && <p className="error">{errors.submit}</p>}
         </form>
     );
