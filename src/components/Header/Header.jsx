@@ -10,13 +10,13 @@ export default function Header() {
                 <img src={logo} alt="date for 1 logo" className="nav__logo" />
             </Link>
             <div className="nav__buttons">
-                <Link to="/quiz" className="link">
+                <Link to="/activities" className="link">
                     <button className="nav__buttons--options">
                         Date Ideas
                     </button>
                 </Link>
 
-                <Link to="/activities" className="link">
+                <Link to="/quiz" className="link">
                     <button className="nav__buttons--options">Quiz</button>
                 </Link>
             </div>
