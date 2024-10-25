@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import ActivityCarousel from "../../components/ActivityCarousel/ActivityCarousel.jsx";
 
 function ActivitiesList() {
     const [activities, setActivities] = useState([]);
@@ -15,17 +13,19 @@ function ActivitiesList() {
         priceRange: "",
         timeOfDay: "",
     });
-
-    useEffect(() => {
-        fetchActivities();
-        fetchOptions();
-    }, [filters]);
+    const [openFilters, setOpenFilters] = useState({
+        venue: false,
+        mood: false,
+        priceRange: false,
+        timeOfDay: false,
+    });
 
     const fetchActivities = async () => {
         try {
             const response = await axios.get("/api/activities", {
                 params: filters,
             });
+            console.log("Fetched Activities:", response.data);
             setActivities(response.data);
         } catch (error) {
             console.error("Error fetching activities:", error);
@@ -34,10 +34,17 @@ function ActivitiesList() {
 
     const fetchOptions = async () => {
         try {
-            const venuesResponse = await axios.get("/api/venues");
-            const moodsResponse = await axios.get("/api/moods");
-            const priceRangesResponse = await axios.get("/api/price-ranges");
-            const timesResponse = await axios.get("/api/times-of-day");
+            const venuesResponse = await axios.get("/api/options/venues");
+            const moodsResponse = await axios.get("/api/options/moods");
+            const priceRangesResponse = await axios.get(
+                "/api/options/price-ranges"
+            );
+            const timesResponse = await axios.get("/api/options/times-of-day");
+
+            console.log("Venues:", venuesResponse.data);
+            console.log("Moods:", moodsResponse.data);
+            console.log("Price Ranges:", priceRangesResponse.data);
+            console.log("Times of Day:", timesResponse.data);
 
             setVenues(venuesResponse.data);
             setMoods(moodsResponse.data);
@@ -48,6 +55,11 @@ function ActivitiesList() {
         }
     };
 
+    useEffect(() => {
+        fetchOptions();
+        fetchActivities();
+    }, [filters]);
+
     const handleFilterChange = (e) => {
         setFilters({
             ...filters,
@@ -55,42 +67,72 @@ function ActivitiesList() {
         });
     };
 
+    const toggleFilter = (filterName) => {
+        setOpenFilters((prevState) => ({
+            ...prevState,
+            [filterName]: !prevState[filterName],
+        }));
+    };
+
     return (
         <div>
             <h1>Activities List</h1>
             <div>
-                <select name="venue" onChange={handleFilterChange}>
-                    <option value="">All Venues</option>
-                    {venues.map((venue) => (
-                        <option key={venue.id} value={venue.id}>
-                            {venue.name}
-                        </option>
-                    ))}
-                </select>
-                <select name="mood" onChange={handleFilterChange}>
-                    <option value="">All Moods</option>
-                    {moods.map((mood) => (
-                        <option key={mood.id} value={mood.id}>
-                            {mood.name}
-                        </option>
-                    ))}
-                </select>
-                <select name="priceRange" onChange={handleFilterChange}>
-                    <option value="">All Price Ranges</option>
-                    {priceRanges.map((range) => (
-                        <option key={range.id} value={range.id}>
-                            {range.name}
-                        </option>
-                    ))}
-                </select>
-                <select name="timeOfDay" onChange={handleFilterChange}>
-                    <option value="">All Times of Day</option>
-                    {timesOfDay.map((time) => (
-                        <option key={time.id} value={time.id}>
-                            {time.name}
-                        </option>
-                    ))}
-                </select>
+                <button onClick={() => toggleFilter("venue")}>
+                    Venue {openFilters.venue ? "▲" : "▼"}
+                </button>
+                {openFilters.venue && (
+                    <select name="venue" onChange={handleFilterChange}>
+                        <option value="">All Venues</option>
+                        {venues.map((venue) => (
+                            <option key={venue.id} value={venue.id}>
+                                {venue.name}
+                            </option>
+                        ))}
+                    </select>
+                )}
+
+                <button onClick={() => toggleFilter("mood")}>
+                    Mood {openFilters.mood ? "▲" : "▼"}
+                </button>
+                {openFilters.mood && (
+                    <select name="mood" onChange={handleFilterChange}>
+                        <option value="">All Moods</option>
+                        {moods.map((mood) => (
+                            <option key={mood.id} value={mood.id}>
+                                {mood.name}
+                            </option>
+                        ))}
+                    </select>
+                )}
+
+                <button onClick={() => toggleFilter("priceRange")}>
+                    Price Range {openFilters.priceRange ? "▲" : "▼"}
+                </button>
+                {openFilters.priceRange && (
+                    <select name="priceRange" onChange={handleFilterChange}>
+                        <option value="">All Price Ranges</option>
+                        {priceRanges.map((range) => (
+                            <option key={range.id} value={range.id}>
+                                {range.range}
+                            </option>
+                        ))}
+                    </select>
+                )}
+
+                <button onClick={() => toggleFilter("timeOfDay")}>
+                    Time of Day {openFilters.timeOfDay ? "▲" : "▼"}
+                </button>
+                {openFilters.timeOfDay && (
+                    <select name="timeOfDay" onChange={handleFilterChange}>
+                        <option value="">All Times of Day</option>
+                        {timesOfDay.map((time) => (
+                            <option key={time.id} value={time.id}>
+                                {time.name}
+                            </option>
+                        ))}
+                    </select>
+                )}
             </div>
             <div>
                 {activities.map((activity) => (

@@ -2,8 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-function ActivityCarousel({ images = [] }) {
-    // Default to an empty array
+function ActivityCarousel({ images }) {
     const responsive = {
         superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 5 },
         desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
