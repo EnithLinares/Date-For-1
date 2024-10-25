@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function CreateActivityForm() {
@@ -14,6 +14,31 @@ function CreateActivityForm() {
 
     const [image, setImage] = useState(null);
     const [errors, setErrors] = useState({});
+    const [timesOfDay, setTimesOfDay] = useState([]);
+    const [moods, setMoods] = useState([]);
+    const [priceRanges, setPriceRanges] = useState([]);
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const timesResponse = await axios.get(
+                    "/api/options/times-of-day"
+                );
+                const moodsResponse = await axios.get("/api/options/moods");
+                const priceRangesResponse = await axios.get(
+                    "/api/options/price-ranges"
+                );
+
+                setTimesOfDay(timesResponse.data);
+                setMoods(moodsResponse.data);
+                setPriceRanges(priceRangesResponse.data);
+            } catch (error) {
+                console.error("Error fetching options:", error);
+            }
+        };
+
+        fetchOptions();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({
@@ -23,7 +48,13 @@ function CreateActivityForm() {
     };
 
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file && !file.type.match("image.*")) {
+            setErrors({ image: "Please upload a valid image file" });
+            return;
+        }
+        setImage(file);
+        setErrors({ ...errors, image: null });
     };
 
     const validatePostalCode = (postalCode) => {
@@ -112,7 +143,11 @@ function CreateActivityForm() {
                 onChange={handleChange}
             >
                 <option value="">Time of Day</option>
-                {/* Add options dynamically */}
+                {timesOfDay.map((time) => (
+                    <option key={time.id} value={time.id}>
+                        {time.name}
+                    </option>
+                ))}
             </select>
 
             <select
@@ -121,7 +156,11 @@ function CreateActivityForm() {
                 onChange={handleChange}
             >
                 <option value="">Mood</option>
-                {/* Add options dynamically */}
+                {moods.map((mood) => (
+                    <option key={mood.id} value={mood.id}>
+                        {mood.name}
+                    </option>
+                ))}
             </select>
 
             <select
@@ -130,14 +169,18 @@ function CreateActivityForm() {
                 onChange={handleChange}
             >
                 <option value="">Price Range</option>
-                {/* Add options dynamically */}
+                {priceRanges.map((range) => (
+                    <option key={range.id} value={range.id}>
+                        {range.range}
+                    </option>
+                ))}
             </select>
 
             <input type="file" name="image" onChange={handleImageChange} />
-            {errors.image && <p>{errors.image}</p>}
+            {errors.image && <p className="error">{errors.image}</p>}
 
             <button type="submit">Submit</button>
-            {errors.submit && <p>{errors.submit}</p>}
+            {errors.submit && <p className="error">{errors.submit}</p>}
         </form>
     );
 }
