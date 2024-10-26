@@ -1,0 +1,13 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.card {
+    border: 2px solid transparent;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.card.selected {
+    border-color: blue; /* Change color as needed */
+}
