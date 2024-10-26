@@ -8,6 +8,7 @@ import ActivitiesList from "./pages/ActivitiesList/ActivitiesList.jsx";
 import ActivityDetails from "./pages/ActivityDetails/ActivityDetails.jsx";
 import AddActivity from "./pages/AddActivity/AddActivity.jsx";
 import AboutUs from "./pages/AboutUs/AboutUs.jsx";
+import Recommendations from "./pages/Recommendation/Recommendations.jsx";
 
 export default function App() {
     return (
@@ -16,6 +17,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/search-results" element={<SearchResults />} />
                 <Route path="/quiz" element={<Quiz />} />
+                <Route path="/recommendations" element={<Recommendations />} />
                 <Route path="/activities" element={<ActivitiesList />} />
                 <Route path="/activity/:id" element={<ActivityDetails />} />
                 <Route path="/add-activity" element={<AddActivity />} />
