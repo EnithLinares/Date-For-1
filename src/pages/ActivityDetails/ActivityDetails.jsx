@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Header from "../../components/Header/Header";
 
 function ActivityDetail() {
     const [activity, setActivity] = useState(null);
@@ -23,6 +24,7 @@ function ActivityDetail() {
 
     return (
         <div>
+            <Header />
             <h1>{activity.name}</h1>
             <p>{activity.description}</p>
             {/* Add more activity details here */}

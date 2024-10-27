@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Quiz.scss";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 function Quiz() {
     const [step, setStep] = useState(1);
@@ -39,6 +40,7 @@ function Quiz() {
 
     return (
         <div>
+            <Header />
             <h2>Quiz</h2>
             {step === 1 && (
                 <div>

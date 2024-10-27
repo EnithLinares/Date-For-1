@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 function Recommendations() {
     const location = useLocation();
@@ -8,6 +9,7 @@ function Recommendations() {
 
     return (
         <div>
+            <Header />
             <h2>Recommended Activities</h2>
             {activities.message ? (
                 <div>

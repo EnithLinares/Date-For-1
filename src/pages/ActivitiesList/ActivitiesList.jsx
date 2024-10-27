@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 function ActivitiesList() {
     const [activities, setActivities] = useState([]);
@@ -77,6 +78,7 @@ function ActivitiesList() {
 
     return (
         <div>
+            <Header />
             <h1>Activities List</h1>
             <div>
                 <button onClick={() => toggleFilter("venue")}>
