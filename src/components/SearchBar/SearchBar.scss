@@ -26,24 +26,3 @@
         @include search-button;
     }
 }
-
-.about {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 1rem;
-    background-color: $text;
-    color: $white;
-    gap: 1rem;
-    @include subheader;
-
-    &__button {
-        @include single-green-button;
-    }
-    .link {
-        width: 100%;
-        text-decoration: none;
-        color: inherit;
-    }
-}

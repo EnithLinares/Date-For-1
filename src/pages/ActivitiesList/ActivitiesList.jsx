@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import ActivityCarousel from "../../components/ActivityCarousel/ActivityCarousel";
+import "../ActivitiesList/ActivitiesList.scss";
 
 function ActivitiesList() {
     const [activities, setActivities] = useState([]);
@@ -27,10 +29,10 @@ function ActivitiesList() {
             const response = await axios.get("/api/activities", {
                 params: filters,
             });
-            console.log("Fetched Activities:", response.data);
-            setActivities(response.data);
+            setActivities(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error("Error fetching activities:", error);
+            setActivities([]); // Ensure activities is always an array
         }
     };
 
@@ -42,11 +44,6 @@ function ActivitiesList() {
                 "/api/options/price-ranges"
             );
             const timesResponse = await axios.get("/api/options/times-of-day");
-
-            console.log("Venues:", venuesResponse.data);
-            console.log("Moods:", moodsResponse.data);
-            console.log("Price Ranges:", priceRangesResponse.data);
-            console.log("Times of Day:", timesResponse.data);
 
             setVenues(venuesResponse.data);
             setMoods(moodsResponse.data);
@@ -79,6 +76,7 @@ function ActivitiesList() {
     return (
         <div>
             <Header />
+            <ActivityCarousel activities={activities} />
             <h1>Activities List</h1>
             <div>
                 <button onClick={() => toggleFilter("venue")}>
@@ -102,7 +100,7 @@ function ActivitiesList() {
                     <select name="mood" onChange={handleFilterChange}>
                         <option value="">All Moods</option>
                         {moods.map((mood) => (
-                            <option key={mood.id} value={mood.id}>
+                            <option key={mood.id} value={mood.name}>
                                 {mood.name}
                             </option>
                         ))}
@@ -116,7 +114,7 @@ function ActivitiesList() {
                     <select name="priceRange" onChange={handleFilterChange}>
                         <option value="">All Price Ranges</option>
                         {priceRanges.map((range) => (
-                            <option key={range.id} value={range.id}>
+                            <option key={range.id} value={range.range}>
                                 {range.range}
                             </option>
                         ))}
@@ -130,28 +128,53 @@ function ActivitiesList() {
                     <select name="timeOfDay" onChange={handleFilterChange}>
                         <option value="">All Times of Day</option>
                         {timesOfDay.map((time) => (
-                            <option key={time.id} value={time.id}>
+                            <option key={time.id} value={time.name}>
                                 {time.name}
                             </option>
                         ))}
                     </select>
                 )}
             </div>
-            <div>
-                {activities.map((activity) => (
+
+            {/* Display a message if no activities are found */}
+            {activities.length === 0 && <p>No matching activities found.</p>}
+
+            <div className="activity-list">
+                {activities.map((activity, index) => (
                     <Link
                         to={`/activity/${activity.id}`}
-                        key={activity.id}
+                        key={`${activity.id}-${index}`} // Ensure unique keys by combining id and index
                         className="activity-link"
                     >
                         <div className="activity-item">
+                            <img
+                                src={activity.image_url}
+                                alt={activity.name}
+                                className="activity-image"
+                            />
                             <h3>{activity.name}</h3>
                             <p className="description-preview">
                                 {activity.description
                                     ? activity.description.slice(0, 100) + "..."
                                     : "No description available."}
                             </p>
-                            {/* Add more activity details here if needed */}
+                            {/* Display additional details */}
+                            <p>
+                                <strong>Venue:</strong> {activity.venue_name}
+                            </p>
+                            {/* Join arrays into strings for display */}
+                            <p>
+                                <strong>Time of Day:</strong>{" "}
+                                {(activity.times_of_day || "")
+                                    .split(", ")
+                                    .join(", ")}
+                            </p>
+                            <p>
+                                <strong>Price Range:</strong>{" "}
+                                {(activity.price_ranges || "")
+                                    .split(", ")
+                                    .join(", ")}
+                            </p>
                         </div>
                     </Link>
                 ))}

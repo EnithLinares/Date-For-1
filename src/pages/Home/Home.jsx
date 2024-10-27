@@ -25,7 +25,7 @@ export default function Home() {
                     <TypingSuggestions />
                 </div>
                 <div className="about">
-                    <p>Learn about the app's creator</p>
+                    <p>Learn more about the app's creator</p>
                     <Link to="/about" className="link">
                         <button className="about__button">About Me</button>
                     </Link>

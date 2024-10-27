@@ -1,0 +1,13 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-image {
+    width: 100%; /* Adjust as needed */
+    height: 200px; /* Set a standard height */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+}

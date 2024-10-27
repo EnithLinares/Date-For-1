@@ -25,3 +25,24 @@
         color: $section-text;
     }
 }
+
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    background-color: $text;
+    color: $white;
+    gap: 1rem;
+    @include subheader;
+
+    &__button {
+        @include single-green-button;
+    }
+    .link {
+        width: fit-content;
+        text-decoration: none;
+        color: inherit;
+    }
+}
