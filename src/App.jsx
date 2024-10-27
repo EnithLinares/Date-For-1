@@ -19,7 +19,7 @@ export default function App() {
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/recommendations" element={<Recommendations />} />
                 <Route path="/activities" element={<ActivitiesList />} />
-                <Route path="/activity/:id" element={<ActivityDetails />} />
+                <Route path="/activities/:id" element={<ActivityDetails />} />
                 <Route path="/add-activity" element={<AddActivity />} />
                 <Route path="/about" element={<AboutUs />} />
             </Routes>

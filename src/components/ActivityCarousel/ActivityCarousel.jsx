@@ -30,17 +30,18 @@ function ActivityCarousel({ activities }) {
             autoPlaySpeed={4000}
         >
             {activities.map((activity) => (
-                <div key={activity.id} className="carousel-item">
+                <div key={activity.id} className="carousel">
                     <img
                         src={activity.image_url}
                         alt={activity.name}
-                        className="carousel-image"
+                        className="carousel__image"
                     />
                     <h3>{activity.name}</h3>
                     <button
+                        className="carousel__button"
                         onClick={() => navigate(`/activities/${activity.id}`)}
                     >
-                        View Details
+                        Pick this date!
                     </button>
                 </div>
             ))}
