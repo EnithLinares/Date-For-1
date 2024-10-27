@@ -74,12 +74,20 @@ function ActivitiesList() {
     };
 
     return (
-        <div>
+        <div className="ideas">
             <Header />
             <ActivityCarousel activities={activities} />
-            <h1>Activities List</h1>
-            <div>
-                <button onClick={() => toggleFilter("venue")}>
+            <h2 className="ideas__title">
+                Check out the whole list <br></br>of Date Ideas
+            </h2>
+            <div className="ideas__filter">
+                <p className="ideas__label">
+                    Use these filters for a more curated experience
+                </p>
+                <button
+                    onClick={() => toggleFilter("venue")}
+                    className="ideas__filter--button"
+                >
                     Venue {openFilters.venue ? "▲" : "▼"}
                 </button>
                 {openFilters.venue && (
@@ -93,7 +101,10 @@ function ActivitiesList() {
                     </select>
                 )}
 
-                <button onClick={() => toggleFilter("mood")}>
+                <button
+                    onClick={() => toggleFilter("mood")}
+                    className="ideas__filter--button"
+                >
                     Mood {openFilters.mood ? "▲" : "▼"}
                 </button>
                 {openFilters.mood && (
@@ -107,7 +118,10 @@ function ActivitiesList() {
                     </select>
                 )}
 
-                <button onClick={() => toggleFilter("priceRange")}>
+                <button
+                    onClick={() => toggleFilter("priceRange")}
+                    className="ideas__filter--button"
+                >
                     Price Range {openFilters.priceRange ? "▲" : "▼"}
                 </button>
                 {openFilters.priceRange && (
@@ -121,7 +135,10 @@ function ActivitiesList() {
                     </select>
                 )}
 
-                <button onClick={() => toggleFilter("timeOfDay")}>
+                <button
+                    onClick={() => toggleFilter("timeOfDay")}
+                    className="ideas__filter--button"
+                >
                     Time of Day {openFilters.timeOfDay ? "▲" : "▼"}
                 </button>
                 {openFilters.timeOfDay && (
@@ -136,44 +153,53 @@ function ActivitiesList() {
                 )}
             </div>
 
-            {/* Display a message if no activities are found */}
-            {activities.length === 0 && <p>No matching activities found.</p>}
+            {activities.length === 0 && (
+                <p className="ideas__empty">
+                    I'm all out of ideas!<br></br> Please try another filter.
+                </p>
+            )}
 
-            <div className="activity-list">
+            <div className="date">
                 {activities.map((activity, index) => (
                     <Link
                         to={`/activity/${activity.id}`}
-                        key={`${activity.id}-${index}`} // Ensure unique keys by combining id and index
-                        className="activity-link"
+                        key={`${activity.id}-${index}`}
+                        className="date__link"
                     >
-                        <div className="activity-item">
+                        <div className="date__card">
                             <img
                                 src={activity.image_url}
                                 alt={activity.name}
-                                className="activity-image"
+                                className="date__image"
                             />
                             <h3>{activity.name}</h3>
-                            <p className="description-preview">
+                            <p className="date__description">
                                 {activity.description
                                     ? activity.description.slice(0, 100) + "..."
                                     : "No description available."}
                             </p>
-                            {/* Display additional details */}
-                            <p>
-                                <strong>Venue:</strong> {activity.venue_name}
+
+                            <p className="date__category">
+                                Venue: <span> {activity.venue_name} </span>
                             </p>
-                            {/* Join arrays into strings for display */}
-                            <p>
-                                <strong>Time of Day:</strong>{" "}
-                                {(activity.times_of_day || "")
-                                    .split(", ")
-                                    .join(", ")}
+
+                            <p className="date__category">
+                                Time of Day:
+                                <span>
+                                    {" "}
+                                    {(activity.times_of_day || "")
+                                        .split(", ")
+                                        .join(", ")}
+                                </span>
                             </p>
-                            <p>
-                                <strong>Price Range:</strong>{" "}
-                                {(activity.price_ranges || "")
-                                    .split(", ")
-                                    .join(", ")}
+                            <p className="date__category">
+                                Price Range:
+                                <span>
+                                    {" "}
+                                    {(activity.price_ranges || "")
+                                        .split(", ")
+                                        .join(", ")}
+                                </span>
                             </p>
                         </div>
                     </Link>
