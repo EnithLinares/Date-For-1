@@ -172,7 +172,7 @@ function ActivitiesList() {
                                 alt={activity.name}
                                 className="date__image"
                             />
-                            <h3>{activity.name}</h3>
+                            <h3 className="date__name">{activity.name}</h3>
                             <p className="date__description">
                                 {activity.description
                                     ? activity.description.slice(0, 100) + "..."
@@ -180,21 +180,25 @@ function ActivitiesList() {
                             </p>
 
                             <p className="date__category">
-                                Venue: <span> {activity.venue_name} </span>
+                                Venue:{" "}
+                                <span className="date__option">
+                                    {" "}
+                                    {activity.venue_name}{" "}
+                                </span>
                             </p>
 
                             <p className="date__category">
                                 Time of Day:
-                                <span>
+                                <span className="date__option">
                                     {" "}
                                     {(activity.times_of_day || "")
                                         .split(", ")
-                                        .join(", ")}
+                                        .join(",  ")}
                                 </span>
                             </p>
                             <p className="date__category">
                                 Price Range:
-                                <span>
+                                <span className="date__option">
                                     {" "}
                                     {(activity.price_ranges || "")
                                         .split(", ")
