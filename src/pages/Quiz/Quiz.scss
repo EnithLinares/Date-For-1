@@ -2,12 +2,45 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/variables" as *;
 
-.card {
-    border: 2px solid transparent;
-    padding: 10px;
-    cursor: pointer;
-}
+.quiz {
+    @include header;
+    color: $white;
+    padding: 2rem 1rem;
+    background-color: $background;
 
-.card.selected {
-    border-color: blue; /* Change color as needed */
+    &__question {
+        @include subheader;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0.5rem;
+        gap: 0.5rem;
+        background-color: $light-background;
+        color: $background;
+    }
+    &__card {
+        @include body;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        padding: 1rem;
+        cursor: pointer;
+        background-color: $button;
+        color: $text;
+
+        &.selected {
+            background-color: $text;
+            color: $background;
+            font-size: bold;
+        }
+
+        &--option {
+            padding: 1rem 0 0;
+        }
+    }
 }
