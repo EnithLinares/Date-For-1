@@ -8,7 +8,7 @@ import ActivitiesList from "./pages/ActivitiesList/ActivitiesList.jsx";
 import ActivityDetails from "./pages/ActivityDetails/ActivityDetails.jsx";
 import AddActivity from "./pages/AddActivity/AddActivity.jsx";
 import AboutUs from "./pages/AboutUs/AboutUs.jsx";
-import Recommendations from "./pages/Recommendation/Recommendations.jsx";
+import Recommendations from "./pages/Recommendations/Recommendations.jsx";
 
 export default function App() {
     return (

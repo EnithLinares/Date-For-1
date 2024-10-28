@@ -1,0 +1,88 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.reco {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: $background;
+
+    &__title {
+        @include header;
+        background-color: $button;
+        color: $text;
+        padding: 1.5rem;
+        border-radius: 4px;
+    }
+
+    &__error {
+        @include subheader;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--message {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+
+    &__option {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: 4px;
+        background-color: $text;
+        padding: 1rem;
+
+        &--image {
+            border-radius: 4px;
+        }
+
+        &--name {
+            color: $button;
+            text-align: center;
+        }
+
+        &--details {
+            color: $light-background;
+        }
+
+        &--button {
+            @include single-green-button;
+        }
+    }
+
+    &__others {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 4px;
+        background-color: $light-background;
+        width: 100%;
+        padding: 2rem 1rem;
+
+        &--message {
+            @include subheader;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        &--body {
+            @include body;
+            text-align: center;
+        }
+
+        &--button {
+            @include single-green-button;
+            width: 60%;
+            margin-top: 0.5rem;
+        }
+    }
+}
