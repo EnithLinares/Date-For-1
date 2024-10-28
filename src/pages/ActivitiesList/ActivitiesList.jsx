@@ -162,7 +162,7 @@ function ActivitiesList() {
             <div className="date">
                 {activities.map((activity, index) => (
                     <Link
-                        to={`/activity/${activity.id}`}
+                        to={`/activities/${activity.id}`}
                         key={`${activity.id}-${index}`}
                         className="date__link"
                     >

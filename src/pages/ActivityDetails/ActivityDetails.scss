@@ -1,0 +1,88 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: $light-text;
+
+    &__name {
+        text-align: center;
+        background-color: $button;
+        padding: 0.5rem;
+        border-radius: 4px;
+    }
+
+    &__image {
+        border-radius: 4px;
+        width: 95%;
+        height: 15rem;
+        object-fit: cover;
+    }
+
+    &__description {
+        @include body;
+        background-color: $light-background;
+        border-radius: 4px;
+        padding: 1rem 0.5rem;
+    }
+
+    &__info {
+        @include body;
+        background-color: $background;
+        display: flex;
+        border-radius: 4px;
+        flex-wrap: wrap;
+        padding: 1rem 0.5rem;
+        gap: 0.5rem;
+
+        &--type {
+            color: $light-background;
+        }
+
+        &--bold {
+            @include label;
+            font-weight: bold;
+        }
+    }
+
+    &__venue {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        &--title {
+            @include subheader;
+            color: $light-background;
+            margin-top: 1rem;
+        }
+
+        &--info {
+            color: $light-background;
+        }
+
+        &--bold {
+            @include label;
+            font-weight: bold;
+        }
+
+        &--link {
+            cursor: pointer;
+
+            &:hover {
+                color: $text;
+            }
+        }
+    }
+
+    &__button {
+        @include single-green-button;
+    }
+}
