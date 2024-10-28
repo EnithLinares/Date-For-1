@@ -236,13 +236,35 @@ function Quiz() {
                     </div>
                 </div>
             )}
-            <div>
-                <button onClick={() => navigate("/")}>Cancel</button>
-                {step > 1 && <button onClick={handlePrevious}>Previous</button>}
+            <div className="quiz__buttons">
+                <button
+                    onClick={() => navigate("/")}
+                    className="quiz__buttons--option"
+                >
+                    Cancel
+                </button>
+                {step > 1 && (
+                    <button
+                        onClick={handlePrevious}
+                        className="quiz__buttons--option"
+                    >
+                        Previous
+                    </button>
+                )}
                 {step < 3 ? (
-                    <button onClick={handleNext}>Next</button>
+                    <button
+                        onClick={handleNext}
+                        className="quiz__buttons--option"
+                    >
+                        Next
+                    </button>
                 ) : (
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button
+                        onClick={handleSubmit}
+                        className="quiz__buttons--option"
+                    >
+                        Submit
+                    </button>
                 )}
             </div>
         </div>

@@ -43,4 +43,15 @@
             padding: 1rem 0 0;
         }
     }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        background-color: $light-background;
+        padding: 1rem;
+        &--option {
+            @include single-green-button;
+            width: 30%;
+        }
+    }
 }
