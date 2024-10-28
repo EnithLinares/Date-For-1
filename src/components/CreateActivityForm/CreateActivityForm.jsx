@@ -171,6 +171,7 @@ function CreateActivityForm() {
                     </select>
                 </label>
                 <label className="form__select">
+                    Price Range
                     <select
                         name="priceRange"
                         value={formData.priceRange}
@@ -184,8 +185,11 @@ function CreateActivityForm() {
                         ))}
                     </select>
                 </label>
-                <div className="upload-section">
-                    <label htmlFor="imageUpload" className="upload-label">
+                <div className="form__submit">
+                    <label
+                        htmlFor="imageUpload"
+                        className="form__submit--label"
+                    >
                         Upload Photo
                     </label>
                     <input
@@ -193,7 +197,7 @@ function CreateActivityForm() {
                         id="imageUpload"
                         accept="image/*"
                         onChange={handleFileChange}
-                        className="upload-input"
+                        className="form__submit--input"
                     />
                 </div>
 
