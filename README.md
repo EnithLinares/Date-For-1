@@ -1,5 +1,17 @@
 # Date for 1
 
+## Installation
+
+For this project to run properly please have the following packages installed:
+axios
+cors
+multer
+react-multi-carousel
+react-router-dom
+react-toastify
+react-ts-typewriter
+and sass
+
 ## Overview
 
 "Date for 1" is an app designed to help people explore their cities and plan solo dates. The app suggests activities based on the time of day, the user's desired experience, and their current mood.
@@ -152,6 +164,7 @@ Activities
 -   Price Range ID (foreign key to Price Ranges table)
 
 Venues
+
 -   ID (unique identifier)
 -   Name - Address - Website URL
     Moods
@@ -159,6 +172,7 @@ Venues
 -   Name (e.g., creative, hungry, adventurous, curious)
 
 Times of Day
+
 -   ID (unique identifier)
 -   Name (e.g., morning, afternoon, evening, night)
     Price Ranges
@@ -166,10 +180,12 @@ Times of Day
 -   Range (e.g., $, $$, $$$, $$$$)
 
 Activity_Moods (junction table)
+
 -   Activity ID (foreign key to Activities table)
 -   Mood ID (foreign key to Moods table)
 
 Activity_Times (junction table)
+
 -   Activity ID (foreign key to Activities table)
 -   Time of Day ID (foreign key to Times of Day table)
 
