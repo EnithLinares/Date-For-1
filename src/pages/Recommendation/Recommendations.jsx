@@ -11,24 +11,33 @@ function Recommendations() {
         <div>
             <Header />
             <h2>Recommended Activities</h2>
-            {activities.message ? (
+            {activities.length === 0 ? (
                 <div>
-                    <p>{activities.message}</p>
-                    <button onClick={() => navigate("/activities")}>
-                        View All Activities
-                    </button>
-                    <button onClick={() => navigate("/quiz")}>
-                        Take Quiz Again
-                    </button>
+                    <p>No matching activities found.</p>
                 </div>
             ) : (
                 activities.map((activity) => (
                     <div key={activity.id} className="activity-card">
                         <h3>{activity.name}</h3>
-                        {/* Add more details and links to activity details if needed */}
+                        <p>{activity.description}</p>
+                        <button
+                            onClick={() =>
+                                navigate(`/activities/${activity.id}`)
+                            }
+                        >
+                            View Details
+                        </button>
                     </div>
                 ))
             )}
+            <div className="recommendations__buttons">
+                <button onClick={() => navigate("/activities")}>
+                    View All Activities
+                </button>
+                <button onClick={() => navigate("/quiz")}>
+                    Take Quiz Again
+                </button>
+            </div>
         </div>
     );
 }
