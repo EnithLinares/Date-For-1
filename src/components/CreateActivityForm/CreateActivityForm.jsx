@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import "./CreateActivityForm.scss";
 
 function CreateActivityForm() {
     const [formData, setFormData] = useState({
         name: "",
+        venue: "",
         description: "",
-        venue_name: "",
-        time_of_day_id: "",
-        mood_id: "",
-        price_range_id: "",
+        timeOfDay: "",
+        mood: "",
+        priceRange: "",
+        image: null,
     });
 
-    const [image, setImage] = useState(null);
-    const [errors, setErrors] = useState({});
-    const [timesOfDay, setTimesOfDay] = useState([]);
-    const [moods, setMoods] = useState([]);
-    const [priceRanges, setPriceRanges] = useState([]);
+    const [options, setOptions] = useState({
+        timesOfDay: [],
+        moods: [],
+        priceRanges: [],
+    });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOptions = async () => {
@@ -28,9 +35,11 @@ function CreateActivityForm() {
                     "/api/options/price-ranges"
                 );
 
-                setTimesOfDay(timesResponse.data);
-                setMoods(moodsResponse.data);
-                setPriceRanges(priceRangesResponse.data);
+                setOptions({
+                    timesOfDay: timesResponse.data,
+                    moods: moodsResponse.data,
+                    priceRanges: priceRangesResponse.data,
+                });
             } catch (error) {
                 console.error("Error fetching options:", error);
             }
@@ -40,136 +49,160 @@ function CreateActivityForm() {
     }, []);
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file && !file.type.match("image.*")) {
-            setErrors({ ...errors, image: "Please upload a valid image file" });
-            return;
-        }
-        setImage(file);
-        setErrors({ ...errors, image: null });
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, image: e.target.files[0] });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const data = new FormData();
+
+        // Append all form fields with correct keys
         data.append("name", formData.name);
+        data.append("venue_name", formData.venue);
         data.append("description", formData.description);
-        data.append("venue_name", formData.venue_name);
-        data.append("time_of_day_id", formData.time_of_day_id);
-        data.append("mood_id", formData.mood_id);
-        data.append("price_range_id", formData.price_range_id); // Ensure this is populated
-        data.append("image", image);
+
+        const timeOfDay = options.timesOfDay.find(
+            (time) => time.name === formData.timeOfDay
+        );
+        const mood = options.moods.find((mood) => mood.name === formData.mood);
+        const priceRange = options.priceRanges.find(
+            (range) => range.range === formData.priceRange
+        );
+
+        if (timeOfDay) data.append("time_of_day_id", timeOfDay.id);
+        if (mood) data.append("mood_id", mood.id);
+        if (priceRange) data.append("price_range_id", priceRange.id);
+
+        if (formData.image) {
+            data.append("image", formData.image);
+        }
 
         try {
-            const response = await axios.post(
-                "http://localhost:8080/api/activities",
-                data
-            );
-            console.log("Activity created:", response.data);
-            // Reset form or show success message
+            await axios.post("/api/activities", data, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            toast.success("Activity added successfully!");
             setFormData({
                 name: "",
+                venue: "",
                 description: "",
-                venue_name: "",
-                time_of_day_id: "",
-                mood_id: "",
-                price_range_id: "",
+                timeOfDay: "",
+                mood: "",
+                priceRange: "",
+                image: null,
             });
-            setImage(null);
-            setErrors({});
+            navigate("/activities");
         } catch (error) {
-            console.error(
-                "Error creating activity:",
-                error.response?.data || error.message
-            );
-            setErrors({ ...errors, submit: "Failed to create activity" });
+            console.error("Error adding activity:", error);
+            toast.error("Failed to add activity.");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Create Activity</h2>
+        <div className="form">
+            <h2 className="form__title">
+                Nothing caught your eye? Help us grow the database!
+            </h2>
+            <form onSubmit={handleSubmit} className="form__fields">
+                <label className="form__input">
+                    Date Idea
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Date Idea"
+                        className="form__input--field"
+                    />
+                </label>
+                <label className="form__input">
+                    Venue
+                    <input
+                        type="text"
+                        name="venue"
+                        value={formData.venue}
+                        onChange={handleChange}
+                        placeholder="Venue"
+                        className="form__input--field"
+                    />
+                </label>
+                <label className="form__input">
+                    Description
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        placeholder="What are we doing?"
+                        className="form__input--textarea"
+                    />
+                </label>
+                <label className="form__select">
+                    Time of day
+                    <select
+                        name="timeOfDay"
+                        value={formData.timeOfDay}
+                        onChange={handleChange}
+                    >
+                        <option value="">Time of Day</option>
+                        {options.timesOfDay.map((time) => (
+                            <option key={time.id} value={time.name}>
+                                {time.name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label className="form__select">
+                    Mood
+                    <select
+                        name="mood"
+                        value={formData.mood}
+                        onChange={handleChange}
+                    >
+                        <option value="">Mood</option>
+                        {options.moods.map((mood) => (
+                            <option key={mood.id} value={mood.name}>
+                                {mood.name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label className="form__select">
+                    <select
+                        name="priceRange"
+                        value={formData.priceRange}
+                        onChange={handleChange}
+                    >
+                        <option value="">Price Range</option>
+                        {options.priceRanges.map((range) => (
+                            <option key={range.id} value={range.range}>
+                                {range.range}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <div className="upload-section">
+                    <label htmlFor="imageUpload" className="upload-label">
+                        Upload Photo
+                    </label>
+                    <input
+                        type="file"
+                        id="imageUpload"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="upload-input"
+                    />
+                </div>
 
-            <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-            />
-
-            <input
-                type="text"
-                name="venue_name"
-                placeholder="Venue"
-                value={formData.venue_name}
-                onChange={handleChange}
-                required
-            />
-
-            <textarea
-                name="description"
-                placeholder="Be as detailed as possible"
-                value={formData.description}
-                onChange={handleChange}
-            />
-
-            <select
-                name="time_of_day_id"
-                value={formData.time_of_day_id}
-                onChange={handleChange}
-            >
-                <option value="">Time of Day</option>
-                {timesOfDay.map((time) => (
-                    <option key={time.id} value={time.id}>
-                        {time.name}
-                    </option>
-                ))}
-            </select>
-
-            <select
-                name="mood_id"
-                value={formData.mood_id}
-                onChange={handleChange}
-            >
-                <option value="">Mood</option>
-                {moods.map((mood) => (
-                    <option key={mood.id} value={mood.id}>
-                        {mood.name}
-                    </option>
-                ))}
-            </select>
-
-            <select
-                name="price_range_id"
-                value={formData.price_range_id}
-                onChange={handleChange}
-            >
-                <option value="">Price Range</option>
-                {priceRanges.map((range) => (
-                    <option key={range.id} value={range.id}>
-                        {range.range}
-                    </option>
-                ))}
-            </select>
-
-            <input type="file" name="image" onChange={handleImageChange} />
-
-            {errors.image && <p className="error">{errors.image}</p>}
-
-            <button type="submit">Submit</button>
-
-            {errors.submit && <p className="error">{errors.submit}</p>}
-        </form>
+                <button type="submit" className="form__button">
+                    Submit
+                </button>
+            </form>
+            <ToastContainer />
+        </div>
     );
 }
 
