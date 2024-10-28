@@ -54,7 +54,11 @@ function Quiz() {
                         }`}
                         onClick={() => handleSelect("mood", "Creative")}
                     >
-                        <img src="/images/creative.jpg" alt="Creative" />
+                        <img
+                            src="/images/creative.jpg"
+                            alt="Creative"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             I'm feeling Creative
                         </p>
@@ -65,7 +69,11 @@ function Quiz() {
                         }`}
                         onClick={() => handleSelect("mood", "Adventurous")}
                     >
-                        <img src="/images/adventure.jpg" alt="Adventurous" />
+                        <img
+                            src="/images/adventure.jpg"
+                            alt="Adventurous"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             I feel Adventurous!
                         </p>
@@ -76,7 +84,11 @@ function Quiz() {
                         }`}
                         onClick={() => handleSelect("mood", "Cozy")}
                     >
-                        <img src="/images/cozy.jpg" alt="Cozy" />
+                        <img
+                            src="/images/cozy.jpg"
+                            alt="Cozy"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">I'm feeling Cozy</p>
                     </div>
                     <div
@@ -85,7 +97,11 @@ function Quiz() {
                         }`}
                         onClick={() => handleSelect("mood", "Hungry")}
                     >
-                        <img src="/images/hungry.jpg" alt="Hungry" />
+                        <img
+                            src="/images/hungry.jpg"
+                            alt="Hungry"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">I'm feeling Hungry</p>
                     </div>
                 </div>
@@ -106,7 +122,11 @@ function Quiz() {
                             )
                         }
                     >
-                        <img src="/images/early-morning.jpg" alt="Morning" />
+                        <img
+                            src="/images/early-morning.jpg"
+                            alt="Morning"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             Early bird gets the worm (7 am - 9 am)
                         </p>
@@ -121,7 +141,11 @@ function Quiz() {
                             handleSelect("timeOfDay", "Anytime after 10 am")
                         }
                     >
-                        <img src="/images/10am.jpg" alt="mid-afternoon" />
+                        <img
+                            src="/images/10am.jpg"
+                            alt="mid-afternoon"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             Anytime after 10 am
                         </p>
@@ -139,7 +163,11 @@ function Quiz() {
                             )
                         }
                     >
-                        <img src="/images/after-work.jpg" alt="Evening" />
+                        <img
+                            src="/images/after-work.jpg"
+                            alt="Evening"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             I have to work (after 5 pm)
                         </p>
@@ -157,7 +185,11 @@ function Quiz() {
                             )
                         }
                     >
-                        <img src="/images/night-owl.jpg" alt="Evening" />
+                        <img
+                            src="/images/night-owl.jpg"
+                            alt="Evening"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">I'm a night owl</p>
                     </div>
                 </div>
@@ -175,7 +207,11 @@ function Quiz() {
                             handleSelect("priceRange", "$ (Free to $20)")
                         }
                     >
-                        <img src="/images/budget.jpg" alt="Low Budget" />
+                        <img
+                            src="/images/budget.jpg"
+                            alt="Low Budget"
+                            className="quiz__card--image"
+                        />
                         <p className="quiz__card--option">
                             I'm on a budget (free - $20)
                         </p>
@@ -193,6 +229,7 @@ function Quiz() {
                         <img
                             src="/images/little-treat.jpg"
                             alt="Medium Budget"
+                            className="quiz__card--image"
                         />
                         <p className="quiz__card--option">
                             I deserve a little treat ($21 - $59)
@@ -211,6 +248,7 @@ function Quiz() {
                         <img
                             src="/images/special.jpg"
                             alt="sparkling drinks on a ledge"
+                            className="quiz__card--image"
                         />
                         <p className="quiz__card--option">
                             I want to make it special ($60 - $150)
@@ -229,6 +267,7 @@ function Quiz() {
                         <img
                             src="/images/expensive.jpg"
                             alt="expensive necklace"
+                            className="quiz__card--image"
                         />
                         <p className="quiz__card--option">
                             I'm going all out ($150+)
