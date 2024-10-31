@@ -1,5 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Headshot from "../../assets/photos/Enith_Linares_LI.jpg";
+import logo from "../../assets/logo/date-for-1-logo.svg";
+import github from "../../assets/logo/github-icon-1-logo-svgrepo-com.svg";
+import linkedin from "../../assets/logo/linkedin-icon-2-logo-svgrepo-com.svg";
+import instagram from "../../assets/logo/instagram-2016-logo-svgrepo-com.svg";
 import Header from "../../components/Header/Header";
 import "../AboutUs/AboutUs.scss";
 
@@ -40,26 +45,72 @@ export default function AboutUs() {
                 </div>
             </div>
             <div className="footer">
-                <div className="footer__about">
+                <div className="footer__about--start">
                     <h5 className="footer__about--title">About Us</h5>
-                    <p className="footer__about--link">
+                    <a
+                        href="https://local-voices.ca/voices-of-london"
+                        rel="noopener noreferrer"
+                        className="footer__about--link"
+                    >
                         Nini's Blog - Local Voices
-                    </p>
-                    <p className="footer__about--title">Contact Me</p>
+                    </a>
+                    <Link
+                        to="https://local-voices.ca/contact-me"
+                        rel="noopener noreferrer"
+                        className="footer__about--link"
+                    >
+                        Contact Me
+                    </Link>
+
+                    <p className="footer__about--title">Socials</p>
                     <div className="footer__about--socials">
-                        <p className="footer__about--title">Socials</p>
-                        <p className="footer__about--link">GitHub</p>
-                        <p className="footer__about--link">Instagram</p>
-                        <p className="footer__about--link">LinkedIn</p>
+                        <a
+                            href="https://github.com/EnithLinares"
+                            rel="noopener noreferrer"
+                            className="footer__about--link"
+                        >
+                            <img
+                                src={github}
+                                className="footer__about--icon"
+                            ></img>
+                        </a>
+                        <a
+                            href="https://www.instagram.com/local.voices/"
+                            rel="noopener noreferrer"
+                            className="footer__about--link"
+                        >
+                            <img
+                                src={instagram}
+                                className="footer__about--icon"
+                            ></img>
+                        </a>
+                        <a
+                            href="www.linkedin.com/in/enithlinares"
+                            rel="noopener noreferrer"
+                            className="footer__about--link"
+                        >
+                            <img
+                                src={linkedin}
+                                className="footer__about--icon"
+                            ></img>
+                        </a>
                     </div>
                 </div>
                 <div className="footer__about">
                     <h5 className="footer__about--title">Activities</h5>
-                    <p className="footer__about--link">All Activities</p>
-                    <p className="footer__about--link">Add Your Activity</p>
+                    <Link to="activities" className="footer__about--link">
+                        All Activities
+                    </Link>
+                    <Link to="/add-activity" className="footer__about--link">
+                        Add Your Activity
+                    </Link>
                     <p className="footer__about--link">Venues</p>
-                    <p className="footer__about--link">Take the Quiz</p>
-                    <p className="footer__about--link">logo</p>
+                    <Link to="/quiz" className="footer__about--link">
+                        Take the Quiz
+                    </Link>
+                    <Link to="/">
+                        <img src={logo} className="footer__about--link" />
+                    </Link>
                 </div>
             </div>
         </>
