@@ -5,4 +5,50 @@
 .aboutme {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $background;
+    padding: 1rem;
+
+    &__photo {
+        border-radius: 4px;
+        margin: 1rem;
+        height: 14rem;
+        width: 14rem;
+    }
+
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $light-background;
+        color: $text;
+        padding: 0.5rem;
+        gap: 1rem;
+        border-radius: 4px;
+    }
+
+    &__quote {
+        margin: 1.5rem 0;
+        padding: 0.5rem;
+        border-radius: 4px;
+        background-color: $button;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.footer {
+    background-color: $text;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+
+    &__about {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 49%;
+    }
 }

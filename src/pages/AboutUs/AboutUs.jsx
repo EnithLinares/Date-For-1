@@ -38,28 +38,28 @@ export default function AboutUs() {
                         - Nini Linares, Lead Developer
                     </p>
                 </div>
-                <div className="footer">
-                    <div className="footer__about">
-                        <h5 className="footer__about--title">About Us</h5>
-                        <p className="footer__about--link">
-                            Nini's Blog - Local Voices
-                        </p>
-                        <p className="footer__about--title">Contact Me</p>
-                        <div className="footer__about--socials">
-                            <p className="footer__about--title">Socials</p>
-                            <p className="footer__about--link">GitHub</p>
-                            <p className="footer__about--link">Instagram</p>
-                            <p className="footer__about--link">LinkedIn</p>
-                        </div>
+            </div>
+            <div className="footer">
+                <div className="footer__about">
+                    <h5 className="footer__about--title">About Us</h5>
+                    <p className="footer__about--link">
+                        Nini's Blog - Local Voices
+                    </p>
+                    <p className="footer__about--title">Contact Me</p>
+                    <div className="footer__about--socials">
+                        <p className="footer__about--title">Socials</p>
+                        <p className="footer__about--link">GitHub</p>
+                        <p className="footer__about--link">Instagram</p>
+                        <p className="footer__about--link">LinkedIn</p>
                     </div>
-                    <div className="footer__about">
-                        <h5 className="footer__about--title">Activities</h5>
-                        <p className="footer__about--link">All Activities</p>
-                        <p className="footer__about--link">Add Your Activity</p>
-                        <p className="footer__about--link">Venues</p>
-                        <p className="footer__about--link">Take the Quiz</p>
-                        <p className="footer__about--link">logo</p>
-                    </div>
+                </div>
+                <div className="footer__about">
+                    <h5 className="footer__about--title">Activities</h5>
+                    <p className="footer__about--link">All Activities</p>
+                    <p className="footer__about--link">Add Your Activity</p>
+                    <p className="footer__about--link">Venues</p>
+                    <p className="footer__about--link">Take the Quiz</p>
+                    <p className="footer__about--link">logo</p>
                 </div>
             </div>
         </>
