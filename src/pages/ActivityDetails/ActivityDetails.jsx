@@ -15,13 +15,12 @@ const ActivityDetails = () => {
         const fetchActivityDetails = async () => {
             try {
                 const response = await axios.get(`/api/activities/${id}`);
-                console.log("API Response:", response.data); // Log API response for debugging
-                setActivity(response.data); // Update state with activity details
+                setActivity(response.data);
             } catch (err) {
                 console.error("Error fetching activity details:", err);
                 setError("Failed to load activity details");
             } finally {
-                setLoading(false); // Stop loading once request completes
+                setLoading(false);
             }
         };
 
@@ -41,59 +40,65 @@ const ActivityDetails = () => {
     }
 
     return (
-        <div className="date">
-            <h1 className="date__name">{activity.name}</h1>
-            <img
-                src={activity.image_url} // Use image_url directly from API response
-                alt={activity.name}
-                className="date__image"
-            />
-            <p className="date__description">{activity.description}</p>
+        <>
+            <Header />
+            <div className="date">
+                <h1 className="date__name">{activity.name}</h1>
+                <img
+                    src={activity.image_url}
+                    alt={activity.name}
+                    className="date__image"
+                />
+                <p className="date__description">{activity.description}</p>
 
-            <div className="date__venue">
-                <h2>Venue Information</h2>
-                <p>
-                    <strong>Name:</strong> {activity.venue_name}
-                </p>
-                <p>
-                    <strong>Address:</strong> {activity.venue_address}
-                </p>
-                {activity.venue_website && (
+                <div className="date__venue">
+                    <h2>The Venue</h2>
                     <p>
-                        <strong>Website:</strong>{" "}
-                        <a
-                            href={activity.venue_website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {activity.venue_website}
-                        </a>
+                        <span className="date__venue--bold">Name:</span>{" "}
+                        {activity.venue_name}
                     </p>
-                )}
+                    <p>
+                        <span className="date__venue--bold">Address:</span>{" "}
+                        {activity.venue_address}
+                    </p>
+                    {activity.venue_website && (
+                        <p>
+                            <span className="date__venue--bold">Website:</span>{" "}
+                            <a
+                                href={activity.venue_website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="date__venue--link"
+                            >
+                                {activity.venue_website}
+                            </a>
+                        </p>
+                    )}
+                </div>
+                <div className="date__info">
+                    {activity.moods && (
+                        <div className="date__info">
+                            <h3>Moods</h3>
+                            <p>{activity.moods}</p>
+                        </div>
+                    )}
+
+                    {activity.price_ranges && (
+                        <div className="date__info">
+                            <h3>Price Ranges</h3>
+                            <p>{activity.price_ranges}</p>
+                        </div>
+                    )}
+
+                    {activity.times_of_day && (
+                        <div className="date__info">
+                            <h3>Best Times to Visit</h3>
+                            <p>{activity.times_of_day}</p>
+                        </div>
+                    )}
+                </div>
             </div>
-
-            {/* Additional information such as moods, price ranges, and times of day */}
-            {activity.moods && (
-                <div className="date__info">
-                    <h3>Moods</h3>
-                    <p>{activity.moods}</p>
-                </div>
-            )}
-
-            {activity.price_ranges && (
-                <div className="date__info">
-                    <h3>Price Ranges</h3>
-                    <p>{activity.price_ranges}</p>
-                </div>
-            )}
-
-            {activity.times_of_day && (
-                <div className="date__info">
-                    <h3>Best Times to Visit</h3>
-                    <p>{activity.times_of_day}</p>
-                </div>
-            )}
-        </div>
+        </>
     );
 };
 

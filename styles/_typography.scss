@@ -61,13 +61,13 @@ $body-size-tablet: 1.25rem;
 @mixin body {
     font-size: $body-size;
     line-height: $body-height;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 @mixin body-tablet {
     font-size: $body-size-tablet;
     line-height: 1.875rem;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 // Buttons
