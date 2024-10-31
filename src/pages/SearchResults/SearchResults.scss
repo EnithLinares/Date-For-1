@@ -2,35 +2,20 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/variables" as *;
 
-.ideas {
-    background-color: $light-text;
+.search-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $button;
+    gap: 1rem;
 
     &__title {
-        @include header;
+        background-color: $light-background;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
         color: $text;
-        padding: 2rem 0;
-        text-align: center;
-    }
-
-    &__empty {
-        @include subheader;
-        background-color: $background;
-        color: $white;
-        padding: 3rem 1rem;
-        text-align: center;
-    }
-
-    &__filter {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 1rem 0;
-
-        &--button {
-            @include single-green-button;
-            width: 40%;
-            margin: 0.5rem;
-        }
     }
 }
 

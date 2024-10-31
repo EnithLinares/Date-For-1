@@ -54,51 +54,56 @@ const SearchResults = () => {
     }
 
     return (
-        <div className="search-results">
+        <>
             <Header />
-            <h2 className="search-results__title">Search Results</h2>
-            <div className="date">
-                {results.map((activity, index) => (
-                    <Link
-                        to={`/activities/${activity.id}`}
-                        key={`${activity.id}-${index}`}
-                        className="date__link"
-                    >
-                        <div className="date__card">
-                            <img
-                                src={activity.image_url}
-                                alt={activity.name}
-                                className="date__image"
-                            />
-                            <h3 className="date__name">{activity.name}</h3>
-                            <p className="date__description">
-                                {activity.description
-                                    ? activity.description.slice(0, 100) + "..."
-                                    : "No description available."}
-                            </p>
-                            <p className="date__category">
-                                Venue:{" "}
-                                <span className="date__option">
-                                    {activity.venue_name}
-                                </span>
-                            </p>
-                            <p className="date__category">
-                                Time of Day:
-                                <span className="date__option">
-                                    {activity.times_of_day || "Not specified"}
-                                </span>
-                            </p>
-                            <p className="date__category">
-                                Price Range:
-                                <span className="date__option">
-                                    {activity.price_ranges || "Not specified"}
-                                </span>
-                            </p>
-                        </div>
-                    </Link>
-                ))}
+            <div className="search-results">
+                <h2 className="search-results__title">Search Results</h2>
+                <div className="date">
+                    {results.map((activity, index) => (
+                        <Link
+                            to={`/activities/${activity.id}`}
+                            key={`${activity.id}-${index}`}
+                            className="date__link"
+                        >
+                            <div className="date__card">
+                                <img
+                                    src={activity.image_url}
+                                    alt={activity.name}
+                                    className="date__image"
+                                />
+                                <h3 className="date__name">{activity.name}</h3>
+                                <p className="date__description">
+                                    {activity.description
+                                        ? activity.description.slice(0, 100) +
+                                          "..."
+                                        : "No description available."}
+                                </p>
+                                <p className="date__category">
+                                    Venue:{" "}
+                                    <span className="date__option">
+                                        {activity.venue_name}
+                                    </span>
+                                </p>
+                                <p className="date__category">
+                                    Time of Day:
+                                    <span className="date__option">
+                                        {activity.times_of_day ||
+                                            "Not specified"}
+                                    </span>
+                                </p>
+                                <p className="date__category">
+                                    Price Range:
+                                    <span className="date__option">
+                                        {activity.price_ranges ||
+                                            "Not specified"}
+                                    </span>
+                                </p>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
