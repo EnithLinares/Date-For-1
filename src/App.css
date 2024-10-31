@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "Quicksand";
+  src: url("../../src/assets/fonts/Quicksand-Light.ttf") format(truetype);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Quicksand";
+  src: url("../../src/assets/fonts/Quicksand-Regular.ttf") format(truetype);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Quicksand";
+  src: url("../../src/assets/fonts/Quicksand-Medium.ttf") format(truetype);
+  font-weight: 500;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited {
+  color: inherit;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+}/*# sourceMappingURL=App.css.map */

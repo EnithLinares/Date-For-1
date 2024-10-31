@@ -1,3 +1,8 @@
 @use "../../../styles/mixins" as *;
 @use "../../../styles/typography" as *;
 @use "../../../styles/variables" as *;
+
+.aboutme {
+    display: flex;
+    flex-direction: column;
+}

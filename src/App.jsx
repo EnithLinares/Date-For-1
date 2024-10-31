@@ -15,7 +15,7 @@ export default function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/search-results" element={<SearchResults />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/recommendations" element={<Recommendations />} />
                 <Route path="/activities" element={<ActivitiesList />} />

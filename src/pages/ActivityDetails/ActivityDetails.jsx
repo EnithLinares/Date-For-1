@@ -4,92 +4,97 @@ import axios from "axios";
 import Header from "../../components/Header/Header";
 import "../ActivityDetails/ActivityDetails.scss";
 
-function ActivityDetail() {
-    const [activity, setActivity] = useState(null);
-    const { id } = useParams();
+const ActivityDetails = () => {
+    const { id } = useParams(); // Get the activity ID from the URL
+    const [activity, setActivity] = useState(null); // State to hold activity details
+    const [loading, setLoading] = useState(true); // Loading state
+    const [error, setError] = useState(null); // Error state
 
+    // Fetch activity details when component mounts
     useEffect(() => {
-        const fetchActivity = async () => {
+        const fetchActivityDetails = async () => {
             try {
                 const response = await axios.get(`/api/activities/${id}`);
-                setActivity(response.data);
-            } catch (error) {
-                console.error("Error fetching activity:", error);
+                console.log("API Response:", response.data); // Log API response for debugging
+                setActivity(response.data); // Update state with activity details
+            } catch (err) {
+                console.error("Error fetching activity details:", err);
+                setError("Failed to load activity details");
+            } finally {
+                setLoading(false); // Stop loading once request completes
             }
         };
 
-        fetchActivity();
+        fetchActivityDetails();
     }, [id]);
 
-    if (!activity) return <div>Loading...</div>;
+    if (loading) {
+        return <div className="ideas__empty">Loading...</div>;
+    }
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+    if (error) {
+        return <div className="ideas__empty">{error}</div>;
+    }
+
+    if (!activity) {
+        return <div className="ideas__empty">No activity found</div>;
+    }
 
     return (
-        <div>
-            <Header />
-            <div className="detail">
-                <h2 className="detail__name">{activity.name}</h2>
-                <img
-                    src={activity.image_url}
-                    alt={activity.name}
-                    className="detail__image"
-                />
-                <p className="detail__description">{activity.description}</p>
-                <div className="detail__info">
-                    <p className="detail__info--type">
-                        <span className="detail__info--bold">Price Range:</span>{" "}
-                        {activity.price_ranges?.split(", ").join(", ")}
+        <div className="date">
+            <h1 className="date__name">{activity.name}</h1>
+            <img
+                src={activity.image_url} // Use image_url directly from API response
+                alt={activity.name}
+                className="date__image"
+            />
+            <p className="date__description">{activity.description}</p>
+
+            <div className="date__venue">
+                <h2>Venue Information</h2>
+                <p>
+                    <strong>Name:</strong> {activity.venue_name}
+                </p>
+                <p>
+                    <strong>Address:</strong> {activity.venue_address}
+                </p>
+                {activity.venue_website && (
+                    <p>
+                        <strong>Website:</strong>{" "}
+                        <a
+                            href={activity.venue_website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {activity.venue_website}
+                        </a>
                     </p>
-                    <p className="detail__info--type">
-                        <span className="detail__info--bold">Moods:</span>{" "}
-                        {activity.moods?.split(", ").join(", ")}
-                    </p>
-                    <p className="detail__info--type">
-                        <span className="detail__info--bold">
-                            Times of Day:
-                        </span>{" "}
-                        {activity.times_of_day?.split(", ").join(", ")}
-                    </p>
-                    <div className="detail__venue">
-                        <h3 className="detail__venue--title">
-                            Venue Information
-                        </h3>
-                        <p className="detail__venue--info">
-                            <span className="detail__venue--bold">Name:</span>{" "}
-                            {activity.venue_name}
-                        </p>
-                        <p className="detail__venue--info">
-                            <span className="detail__venue--bold">
-                                Address:
-                            </span>{" "}
-                            {activity.venue_address}
-                        </p>
-                        {activity.venue_website && (
-                            <p className="detail__venue--info">
-                                <span className="detail__venue--bold">
-                                    Website:
-                                </span>{" "}
-                                <a
-                                    href={activity.venue_website}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="detail__venue--link"
-                                >
-                                    {activity.venue_website}
-                                </a>
-                            </p>
-                        )}
-                    </div>
-                </div>
-                <button onClick={scrollToTop} className="detail__button">
-                    Back to Top
-                </button>
+                )}
             </div>
+
+            {/* Additional information such as moods, price ranges, and times of day */}
+            {activity.moods && (
+                <div className="date__info">
+                    <h3>Moods</h3>
+                    <p>{activity.moods}</p>
+                </div>
+            )}
+
+            {activity.price_ranges && (
+                <div className="date__info">
+                    <h3>Price Ranges</h3>
+                    <p>{activity.price_ranges}</p>
+                </div>
+            )}
+
+            {activity.times_of_day && (
+                <div className="date__info">
+                    <h3>Best Times to Visit</h3>
+                    <p>{activity.times_of_day}</p>
+                </div>
+            )}
         </div>
     );
-}
+};
 
-export default ActivityDetail;
+export default ActivityDetails;

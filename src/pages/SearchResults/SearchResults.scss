@@ -1,0 +1,76 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variables" as *;
+
+.ideas {
+    background-color: $light-text;
+
+    &__title {
+        @include header;
+        color: $text;
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    &__empty {
+        @include subheader;
+        background-color: $background;
+        color: $white;
+        padding: 3rem 1rem;
+        text-align: center;
+    }
+
+    &__filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 1rem 0;
+
+        &--button {
+            @include single-green-button;
+            width: 40%;
+            margin: 0.5rem;
+        }
+    }
+}
+
+.date {
+    padding: 1rem;
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        background-color: $background;
+        margin-bottom: 1.5rem;
+        border-radius: 4px;
+        padding: 0.5rem;
+        gap: 1.25rem;
+        cursor: pointer;
+    }
+
+    &__image {
+        border-radius: 4px;
+        width: 95%;
+        height: 12.5rem;
+        object-fit: cover;
+        margin: 0.5rem;
+    }
+
+    &__name {
+        @include subheader;
+        color: $text;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__description {
+        @include body;
+        color: $text;
+    }
+
+    &__category {
+        @include label;
+        color: $text;
+        font-weight: bold;
+    }
+}
